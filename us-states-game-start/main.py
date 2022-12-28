@@ -25,16 +25,14 @@ while len(correct_guesses) < 50:
             y = int(state_info.y)
             text = turtle.Turtle()
             text.shape('circle')
-            text.shapesize(.1,.1)
+            text.shapesize(.1, .1)
             text.penup()
             text.goto(x, y)
             text.write(answer_state)
 
-missing_states_list = []
-for state in states_list:
-    if state not in correct_guesses:
-        missing_states_list.append(state)
+missing_states_list = [state for state in states_list if state not in correct_guesses]
 
 sd = pandas.DataFrame(missing_states_list)
 sd.to_csv('states_to_learn.csv')
+print("CSV is created")
 screen.exitonclick()
